@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pensamiento Matemático — EXANI-II Simplificado</title>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--azul:#0033cc;--azul-dark:#002299;--azul-light:#e8eeff;--naranja:#ff4500;--bg:#f0f4ff;--card:#fff;--txt:#1a1a2e;--sub:#5a6080}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--txt);min-height:100vh}
+.hero{background:linear-gradient(135deg,var(--azul),var(--azul-dark));color:#fff;padding:16px}
+.hero-inner{max-width:900px;margin:0 auto;display:flex;gap:12px;align-items:center}
+.hero-title{font-size:1.15rem;font-weight:800}
+.hero-title span{color:#ffd080}
+.hero-sub{font-size:.8rem;opacity:.9}
+.wrap{max-width:900px;margin:0 auto;padding:16px 14px 40px}
+.card{background:var(--card);border-radius:14px;padding:20px;box-shadow:0 6px 24px rgba(0,51,204,.13);margin-bottom:16px}
+.card h2{text-align:center;color:var(--azul);margin-bottom:10px}
+.card p{font-size:.88rem;line-height:1.6;color:var(--sub);text-align:center}
+.btn{width:100%;padding:13px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--azul),var(--azul-dark));color:#fff;font-size:.95rem;font-weight:800;cursor:pointer;margin-top:12px}
+.btn-sec{width:100%;padding:11px;border-radius:12px;background:#fff;color:var(--azul);border:2px solid var(--azul);font-weight:800;cursor:pointer;margin-top:10px}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px;flex-wrap:wrap}
+.timer-box{background:var(--azul);color:#fff;padding:7px 14px;border-radius:20px;font-weight:800;font-size:.85rem}
+.timer-box.warn{background:#ff8c00}.timer-box.danger{background:#cc3300}
+.progress-track{height:10px;background:#e8eeff;border-radius:20px;overflow:hidden;margin-bottom:14px}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--azul),#00aaff)}
+.nav-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin-bottom:16px}
+.nav-btn{padding:8px 0;border:2px solid #d0d8f0;background:#fff;border-radius:8px;cursor:pointer;font-weight:700}
+.nav-btn.answered{background:#e8eeff;border-color:var(--azul);color:var(--azul)}
+.nav-btn.current{background:var(--azul);color:#fff;border-color:var(--azul)}
+.q-num{font-size:.72rem;color:var(--sub);font-weight:700;letter-spacing:.3px;margin-bottom:6px}
+.q-text{font-size:.97rem;line-height:1.75;margin-bottom:18px}
+.options{display:flex;flex-direction:column;gap:10px}
+.opt-btn{border:2px solid #d0d8f0;border-radius:11px;background:#fff;padding:12px 15px;text-align:left;cursor:pointer;font-size:.93rem;line-height:1.5;display:flex;gap:10px;align-items:flex-start;width:100%}
+.opt-btn:hover{border-color:var(--azul);background:var(--azul-light)}
+.opt-letter{min-width:28px;height:28px;border-radius:50%;background:#e8eeff;font-weight:800;font-size:.82rem;display:flex;align-items:center;justify-content:center;color:var(--azul);flex-shrink:0}
+.opt-btn.selected{border-color:#0033cc;background:#e8eeff}
+.opt-btn.selected .opt-letter{background:#0033cc;color:#fff}
+.exam-footer{padding:0 0 4px;display:flex;gap:9px;margin-top:16px}
+.btn-nav{flex:1;padding:11px 6px;border-radius:10px;border:2px solid #d0d8f0;background:#fff;font-weight:700;cursor:pointer}
+.btn-nav:disabled{opacity:.35;cursor:default}
+.btn-entregar{padding:11px 18px;border-radius:10px;border:none;font-weight:800;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--naranja),#ff8c00)}
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);align-items:center;justify-content:center;z-index:99}
+.modal-bg.open{display:flex}
+.modal{background:#fff;border-radius:14px;padding:22px;max-width:420px;width:90%}
+.modal h3{margin-bottom:10px;color:var(--azul)}
+.modal p{font-size:.88rem;line-height:1.6}
+.modal-btns{display:flex;gap:10px;margin-top:16px;justify-content:flex-end}
+.btn-cancel{padding:10px 16px;border-radius:10px;border:2px solid #d0d8f0;background:#fff;font-weight:700;cursor:pointer}
+.btn-confirm{padding:10px 16px;border-radius:10px;border:none;background:var(--azul);color:#fff;font-weight:800;cursor:pointer}
+.aviso{font-size:.82rem;background:#fff8f0;border-left:4px solid var(--naranja);padding:10px 12px;border-radius:0 10px 10px 0;line-height:1.6;margin-top:12px}
+@media(max-width:600px){.nav-grid{grid-template-columns:repeat(6,1fr)}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="hero-inner"><div><div class="hero-title">Asesorías Académicas <span>Izamal</span></div><div class="hero-sub">EXANI-II Simplificado • 1 de 3 • Pensamiento Matemático</div></div></div></div>
+
+<div class="wrap">
+
+<!-- PANTALLA INICIO -->
+<div class="card" id="screen-home">
+  <h2>🔢 Pensamiento Matemático</h2>
+  <p>Evalúa el razonamiento numérico, algebraico y geométrico.<br><strong>En esta versión NO verás explicaciones ni si tu respuesta es correcta</strong> hasta el final de los 3 módulos.<br>Puedes cambiar tu respuesta mientras estés en el módulo. Al terminar, pasarás automáticamente a <strong>Redacción Indirecta</strong>.</p>
+  <div class="aviso">⏱️ Tendrás <strong>42 minutos</strong>. Contesta todas las preguntas. Si se acaba el tiempo, se guardará lo que lleves y pasarás al siguiente módulo.</div>
+  <button class="btn" onclick="startExam()">▶ Empezar Pensamiento Matemático</button>
+  <button class="btn-sec" onclick="location.href='index.html'">← Volver al portal</button>
+</div>
+
+<!-- PANTALLA EXAMEN -->
+<div class="card" id="screen-exam" style="display:none">
+  <div class="topbar"><span id="q-num">Pregunta 1</span><span class="timer-box" id="timer-box">42:00</span></div>
+  <div class="progress-track"><div class="progress-bar" id="progress-bar" style="width:0%"></div></div>
+  <div class="nav-grid" id="nav-grid"></div>
+  <div class="q-text" id="q-text"></div>
+  <div class="options" id="options"></div>
+  <div class="explanation" id="explanation" style="display:none"></div>
+  <div class="exam-footer">
+    <button class="btn-nav" id="btn-prev" onclick="goTo(STATE.qIdx-1)">← Anterior</button>
+    <button class="btn-nav" id="btn-next-nav" onclick="goTo(STATE.qIdx+1)">Siguiente →</button>
+    <button class="btn-entregar" id="btn-entregar" style="display:none" onclick="pedirConfirmar()">Siguiente módulo →</button>
+  </div>
+</div>
+
+<!-- TIEMPO AGOTADO -->
+<div class="card" id="screen-timeout" style="display:none">
+  <h2 style="color:var(--naranja)">⏰ Tiempo agotado</h2>
+  <p>Se agotó el tiempo disponible.</p>
+  <button class="btn" onclick="finishAndShow()">Siguiente módulo →</button>
+</div>
+
+</div>
+
+<div class="modal-bg" id="modal-bg">
+  <div class="modal"><h3>¿Terminar este módulo?</h3><p id="modal-msg"></p>
+    <div class="modal-btns"><button class="btn-cancel" onclick="cerrarModal()">Cancelar</button><button class="btn-confirm" onclick="confirmarEntrega()">Siguiente módulo →</button></div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// BANCO DE REACTIVOS — Pensamiento Matemático
+// 👇 PEGUE AQUÍ SU BANCO_RAW ORIGINAL, completo, con sus 30 reactivos.
+// Debe quedar así: const BANCO_RAW = [ {q:'...', opts:[...], answer:'...', exp:'...'}, ... ];
+// El campo exp ya NO se muestra al alumno, pero puede dejarlo, no afecta.
+// Si deja el ejemplo de abajo, el examen funciona con 3 preguntas.
+// ============================================================
+const BANCO_RAW = [
+  {q:'Dos ángulos son suplementarios. Uno mide $125°$. ¿Cuánto mide el otro?', opts:['$55°$','$65°$','$35°$'], answer:'$55°$', exp:'Suplementarios suman 180. 180-125=55.'},
+  {q:'Un celular cuesta $4800$ y tiene 25% de descuento. ¿Cuánto se paga?', opts:['$3600$','$3800$','$3400$'], answer:'$3600$', exp:'4800 x 0.75 = 3600.'},
+  {q:'Si $3$ kg de naranja cuestan $54$, ¿cuánto cuestan $7$ kg?', opts:['$126$','$118$','$132$'], answer:'$126$', exp:'1 kg = 18. 18 x 7 = 126.'},
+  {q:'¿Cuál es el resultado de $\\frac{3}{4} + \\frac{1}{2}$?', opts:['$\\frac{5}{4}$','$\\frac{4}{6}$','$1$'], answer:'$\\frac{5}{4}$', exp:'3/4 + 2/4 = 5/4.'},
+  {q:'Una receta para 4 personas usa 2 tazas de harina. ¿Cuántas tazas para 10 personas?', opts:['$5$','$4$','$6$'], answer:'$5$', exp:'Regla de tres: 2 x 10 / 4 = 5.'},
+  {q:'Si un auto recorre $180$ km en $3$ horas, ¿cuánto recorre en $5$ horas a la misma velocidad?', opts:['$300$ km','$280$ km','$320$ km'], answer:'$300$ km', exp:'60 km/h x 5 = 300.'},
+  {q:'¿Cuál es el $20\\%$ de $250$?', opts:['$50$','$40$','$60$'], answer:'$50$', exp:'250 x 0.20 = 50.'},
+  {q:'Un número aumentado en su tercera parte es $32$. ¿Cuál es el número?', opts:['$24$','$20$','$28$'], answer:'$24$', exp:'x + x/3 = 32, 4x/3=32, x=24.'},
+  {q:'Resuelve: $2x + 5 = 17$', opts:['$x=6$','$x=5$','$x=7$'], answer:'$x=6$', exp:'2x=12, x=6.'},
+  {q:'Resuelve: $3(x-2) = 12$', opts:['$x=6$','$x=5$','$x=4$'], answer:'$x=6$', exp:'x-2=4, x=6.'},
+  {q:'Simplifica: $(2x-3y)(x+2y)$', opts:['$2x^2+x y-6y^2$','$2x^2+xy+6y^2$','$2x^2-xy-6y^2$'], answer:'$2x^2+x y-6y^2$', exp:'2x2+4xy-3xy-6y2 = 2x2+xy-6y2.'},
+  {q:'Factoriza: $x^2-9$', opts:['$(x-3)(x+3)$','$(x-9)(x+1)$','$(x+3)^2$'], answer:'$(x-3)(x+3)$', exp:'Diferencia de cuadrados.'},
+  {q:'Si $f(x)=2x-1$, ¿cuánto vale $f(5)$?', opts:['$9$','$8$','$11$'], answer:'$9$', exp:'2(5)-1=9.'},
+  {q:'¿Cuál es la pendiente de la recta $y=3x-2$?', opts:['$3$','$2$','$-2$'], answer:'$3$', exp:'En y=mx+b, m=3.'},
+  {q:'Resuelve el sistema: $x+y=10$, $x-y=2$. ¿Cuánto vale $x$?', opts:['$6$','$4$','$8$'], answer:'$6$', exp:'Sumando: 2x=12, x=6.'},
+  {q:'¿Cuál es el valor de $x$ en $\\frac{x}{4}=5$?', opts:['$20$','$9$','$16$'], answer:'$20$', exp:'x=5x4=20.'},
+  {q:'Un rectángulo mide $8$ cm de largo y $5$ cm de ancho. ¿Cuál es su área?', opts:['$40$ cm²','$26$ cm²','$13$ cm²'], answer:'$40$ cm²', exp:'8 x 5 = 40.'},
+  {q:'Un triángulo tiene base $12$ cm y altura $5$ cm. ¿Cuál es su área?', opts:['$30$ cm²','$60$ cm²','$17$ cm²'], answer:'$30$ cm²', exp:'(12x5)/2=30.'},
+  {q:'El perímetro de un cuadrado es $36$ cm. ¿Cuánto mide cada lado?', opts:['$9$ cm','$6$ cm','$12$ cm'], answer:'$9$ cm', exp:'36/4=9.'},
+  {q:'Un círculo tiene radio $4$ cm. ¿Cuál es su área? Usa $\\pi=3.14$', opts:['$50.24$ cm²','$25.12$ cm²','$12.56$ cm²'], answer:'$50.24$ cm²', exp:'pi x 16 = 50.24.'},
+  {q:'En un triángulo rectángulo, los catetos miden $3$ y $4$. ¿Cuánto mide la hipotenusa?', opts:['$5$','$6$','$7$'], answer:'$5$', exp:'3-4-5, Pitágoras.'},
+  {q:'Dos ángulos complementarios suman $90°$. Si uno mide $35°$, ¿cuánto mide el otro?', opts:['$55°$','$45°$','$65°$'], answer:'$55°$', exp:'90-35=55.'},
+  {q:'¿Cuánto mide la suma de los ángulos interiores de un triángulo?', opts:['$180°$','$360°$','$90°$'], answer:'$180°$', exp:'Siempre 180.'},
+  {q:'Los datos son: $4, 7, 7, 9, 3, 7, 5$. ¿Cuál es la moda?', opts:['$7$','$4$','$5$'], answer:'$7$', exp:'El 7 se repite 3 veces.'},
+  {q:'¿Cuál es la mediana de: $2, 5, 8, 11, 14$?', opts:['$8$','$5$','$11$'], answer:'$8$', exp:'El valor central es 8.'},
+  {q:'La media de $6, 8, 10$ es:', opts:['$8$','$9$','$7$'], answer:'$8$', exp:'(6+8+10)/3=8.'},
+  {q:'Al lanzar una moneda, ¿cuál es la probabilidad de que salga águila?', opts:['$1/2$','$1/4$','$1$'], answer:'$1/2$', exp:'1 caso favorable de 2.'},
+  {q:'En una urna hay $3$ bolas rojas y $2$ azules. ¿Probabilidad de sacar una roja?', opts:['$3/5$','$2/5$','$1/5$'], answer:'$3/5$', exp:'3 de 5.'},
+  {q:'Si se lanza un dado, ¿cuál es la probabilidad de obtener un número par?', opts:['$1/2$','$1/3$','$2/3$'], answer:'$1/2$', exp:'Pares: 2,4,6 = 3 de 6.'},
+  {q:'En una clase de $20$ alumnos, $12$ prefieren matemáticas. ¿Qué porcentaje prefiere matemáticas?', opts:['$60\\%$','$50\\%$','$40\\%$'], answer:'$60\\%$', exp:'12/20 = 0.60.'}
+];
+
+// ============================================================
+// MOTOR SIMPLIFICADO — SIN EXPLICACIONES, SIN MARCAR CORRECTA
+// ============================================================
+const TIEMPO_MIN = 42;
+const NOMBRE = 'Pensamiento Matemático';
+const BANCO = BANCO_RAW;
+const STATE = {qIdx:0, answers:{}, timerSec:0, timerID:null};
+const $ = id => document.getElementById(id);
+const show = id => $(id).style.display = 'block';
+const hide = id => $(id).style.display = 'none';
+function typeset(el){ if(window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([el]).catch(()=>{}); }
+function fmtT(s){ return String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0'); }
+
+function shuffleReactivo(r){
+  if(r._opts) return;
+  const ct = r.answer;
+  let opts = [...r.opts];
+  for(let i = opts.length-1; i > 0; i--){ const j = Math.floor(Math.random()*(i+1)); [opts[i],opts[j]] = [opts[j],opts[i]]; }
+  const letters = 'abcde'.split('').slice(0, opts.length);
+  r._opts = opts.map((t,i) => ({l:letters[i], t}));
+  r._answerLetter = r._opts.find(o => o.t === ct).l;
+}
+function startExam(){
+  STATE.qIdx = 0; STATE.answers = {};
+  BANCO.forEach(r => { delete r._opts; delete r._answerLetter; shuffleReactivo(r); });
+  hide('screen-home'); buildNavGrid(); show('screen-exam'); startTimer(); renderQuestion();
+}
+function startTimer(){
+  STATE.timerSec = TIEMPO_MIN * 60; renderTimer();
+  STATE.timerID = setInterval(() => { STATE.timerSec--; renderTimer(); if(STATE.timerSec <= 0){ clearInterval(STATE.timerID); timeOut(); } }, 1000);
+}
+function renderTimer(){
+  const tb = $('timer-box'); tb.textContent = fmtT(STATE.timerSec);
+  tb.className = 'timer-box' + (STATE.timerSec <= 60 ? ' danger' : STATE.timerSec <= 180 ? ' warn' : '');
+}
+function timeOut(){ hide('screen-exam'); show('screen-timeout'); }
+function finishAndShow(){ hide('screen-timeout'); showResults(); }
+function buildNavGrid(){
+  const grid = $('nav-grid'); grid.innerHTML = '';
+  BANCO.forEach((_,i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn'; btn.id = 'nb-' + i; btn.textContent = i+1;
+    btn.onclick = (() => { const idx = i; return () => goTo(idx); })();
+    grid.appendChild(btn);
+  });
+  updateNavGrid();
+}
+// SOLO marca contestada, NUNCA correcta/incorrecta
+function updateNavGrid(){
+  BANCO.forEach((r,i) => {
+    const btn = $('nb-' + i); if(!btn) return;
+    let cls = 'nav-btn';
+    if(STATE.answers.hasOwnProperty(i)) cls += ' answered';
+    if(i === STATE.qIdx) cls += ' current';
+    btn.className = cls;
+  });
+  $('progress-bar').style.width = (Object.keys(STATE.answers).length / BANCO.length * 100) + '%';
+}
+function goTo(idx){ if(idx < 0 || idx >= BANCO.length) return; STATE.qIdx = idx; renderQuestion(); }
+
+// SIN EXPLICACIÓN, SIN BLOQUEAR, SÍ SE PUEDE CAMBIAR
+function renderQuestion(){
+  const r = BANCO[STATE.qIdx], n = BANCO.length;
+  $('q-num').textContent = `Pregunta ${STATE.qIdx+1} de ${n}`;
+  $('q-text').innerHTML = r.q;
+  $('btn-prev').disabled = (STATE.qIdx === 0);
+  $('btn-next-nav').disabled = (STATE.qIdx === n-1);
+  $('btn-entregar').style.display = (STATE.qIdx === n-1) ? 'block' : 'none';
+  const container = $('options'); container.innerHTML = '';
+  const savedKey = STATE.answers.hasOwnProperty(STATE.qIdx) ? STATE.answers[STATE.qIdx] : null;
+  r._opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn'; btn.dataset.key = opt.l;
+    btn.innerHTML = `<span class="opt-letter">${opt.l.toUpperCase()}</span><span>${opt.t}</span>`;
+    if(opt.l === savedKey) btn.classList.add('selected');
+    btn.onclick = () => selectOption(opt.l, btn);
+    container.appendChild(btn);
+  });
+  const exp = $('explanation'); exp.className = 'explanation'; exp.innerHTML = '';
+  updateNavGrid(); typeset($('screen-exam'));
+}
+function selectOption(key, clickedBtn){
+  STATE.answers[STATE.qIdx] = key;
+  document.querySelectorAll('.opt-btn').forEach(b => {
+    b.classList.remove('selected');
+    if(b.dataset.key === key) b.classList.add('selected');
+  });
+  updateNavGrid();
+}
+function pedirConfirmar(){
+  const p = BANCO.length - Object.keys(STATE.answers).length;
+  $('modal-msg').innerHTML = p > 0 ? `Tienes <strong>${p}</strong> pregunta(s) sin responder. ¿Continuar al siguiente módulo de todas formas?` : 'Has respondido todas las preguntas. ¿Ir al siguiente módulo?';
+  $('modal-bg').classList.add('open');
+}
+function cerrarModal(){ $('modal-bg').classList.remove('open'); }
+function confirmarEntrega(){ cerrarModal(); clearInterval(STATE.timerID); hide('screen-exam'); showResults(); }
+
+function calcCNE(c,t){
+  if(!t) return 1000;
+  const z = ((c/t)*100 - 50) / 16.67;
+  return Math.min(1300, Math.max(700, Math.round(1000 + 100*z)));
+}
+
+// GUARDA Y VA AL SIGUIENTE MÓDULO — NO MUESTRA RESULTADOS AQUÍ
+function showResults(){
+  let correct = 0, wrong = 0, skip = 0;
+  BANCO.forEach((r,i) => {
+    if(!STATE.answers.hasOwnProperty(i)) skip++;
+    else if(STATE.answers[i] === r._answerLetter) correct++;
+    else wrong++;
+  });
+  // DINÁMICO: total se lee de BANCO.length, no está escrito a mano
+  const total = BANCO.length;
+  const pct = total ? Math.round(correct/total*100) : 0;
+  const cne = calcCNE(correct, total);
+  const data = {modulo:NOMBRE, correctas:correct, total:total, pct:pct, cne:cne, fecha:new Date().toISOString(), correctos:correct};
+  try{
+    localStorage.setItem('exani_pm', JSON.stringify(data));
+    localStorage.setItem('simulacro_Pensamiento_Matemático', JSON.stringify(data));
+  }catch(e){}
+  window.location.href = 'ri.html';
+}
+function volverAlPortal(){ location.href = 'index.html'; }
+</script>
+</body>
+</html>
+
